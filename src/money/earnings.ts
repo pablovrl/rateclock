@@ -12,9 +12,7 @@ export function calculateEarnings(
   return calculateTotalEarnings([{ ratePerHour, durationMilliseconds }]);
 }
 
-export function calculateTotalEarnings(
-  periods: EarningsPeriod[],
-): bigint {
+export function calculateTotalEarnings(periods: EarningsPeriod[]): bigint {
   let numerator = 0n;
 
   for (const period of periods) {
@@ -27,11 +25,8 @@ export function calculateTotalEarnings(
       );
     }
 
-    numerator +=
-      period.ratePerHour * BigInt(period.durationMilliseconds);
+    numerator += period.ratePerHour * BigInt(period.durationMilliseconds);
   }
 
-  return (
-    numerator + MILLISECONDS_PER_HOUR / 2n
-  ) / MILLISECONDS_PER_HOUR;
+  return (numerator + MILLISECONDS_PER_HOUR / 2n) / MILLISECONDS_PER_HOUR;
 }

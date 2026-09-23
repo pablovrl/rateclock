@@ -34,25 +34,30 @@ export function watchSessionStatus(
     options.onStop();
   };
 
-  const update = (): void => {
+  const update = (): boolean => {
     try {
       const status = options.readStatus();
       options.render(status);
 
       if (status === null) {
         stop();
+        return false;
       }
+
+      return true;
     } catch (error) {
       options.onError(error);
       stop();
+      return false;
     }
   };
 
   unregisterInterrupt = options.registerInterrupt(stop);
-  update();
 
-  if (!stopped) {
-    timer = options.setInterval(update, 1_000);
+  if (update()) {
+    timer = options.setInterval(() => {
+      update();
+    }, 1_000);
   }
 
   return stop;

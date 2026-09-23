@@ -65,7 +65,7 @@ describe("worktime status", () => {
 
       expect(result.status).toBe(0);
       expect(result.stdout).toMatch(
-        /^Project:     client-a\nStatus:      working\nDuration:    01:00:\d{2}\nRate:        30\.00 EUR\/h\nEarned:      30\.\d{2,6} EUR\n$/,
+        /^Project: {5}client-a\nStatus: {6}working\nDuration: {4}01:00:\d{2}\nRate: {8}30\.00 EUR\/h\nEarned: {6}30\.\d{2,6} EUR\n$/,
       );
       expect(result.stderr).toBe("");
     } finally {

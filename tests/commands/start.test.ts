@@ -47,9 +47,7 @@ describe("worktime start", () => {
       const firstRun = runStart(temporaryDirectory, "client-a");
 
       expect(firstRun.status).toBe(0);
-      expect(firstRun.stdout).toBe(
-        'Session started for project "client-a".\n',
-      );
+      expect(firstRun.stdout).toBe('Session started for project "client-a".\n');
       expect(firstRun.stderr).toBe("");
 
       const secondRun = runStart(temporaryDirectory, "client-b");

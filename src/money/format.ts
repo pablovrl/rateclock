@@ -11,5 +11,5 @@ export function formatMicrounits(value: bigint): string {
     .replace(/0+$/, "")
     .padEnd(2, "0");
 
-  return `${negative ? "-" : ""}${units}.${fractionalPart}`;
+  return `${negative ? "-" : ""}${units.toString()}.${fractionalPart}`;
 }

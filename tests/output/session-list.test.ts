@@ -29,8 +29,6 @@ describe("formatSessionListEntry", () => {
         { ...session, id: 2n, finishedAt: null },
         startedAt + 3_600_000,
       ),
-    ).toBe(
-      "#2 client-a | 2026-01-02 09:00:00 → active | 01:00:00 | 30.00 EUR",
-    );
+    ).toBe("#2 client-a | 2026-01-02 09:00:00 → active | 01:00:00 | 30.00 EUR");
   });
 });

@@ -82,9 +82,9 @@ describe("database migrations", () => {
 
         expect(project.name).toBe("client-a");
         expect(sessionColumns).toHaveLength(6);
-        expect(
-          upgradedDatabase.pragma("user_version", { simple: true }),
-        ).toBe(2);
+        expect(upgradedDatabase.pragma("user_version", { simple: true })).toBe(
+          2,
+        );
       } finally {
         upgradedDatabase.close();
       }
@@ -125,9 +125,7 @@ describe("database migrations", () => {
         expect(() =>
           insertProject.run("client-a", 30_000_000n, "EUR", 0),
         ).toThrow();
-        expect(() =>
-          insertProject.run("client-b", 0n, "EUR", 0),
-        ).toThrow();
+        expect(() => insertProject.run("client-b", 0n, "EUR", 0)).toThrow();
         expect(() =>
           insertProject.run("client-c", 30_000_000n, "eur", 0),
         ).toThrow();
@@ -187,13 +185,7 @@ describe("database migrations", () => {
           insertSession.run(999, 30_000_000n, "EUR", 1_000, 2_000),
         ).toThrow();
         expect(() =>
-          insertSession.run(
-            project.lastInsertRowid,
-            0n,
-            "EUR",
-            1_000,
-            2_000,
-          ),
+          insertSession.run(project.lastInsertRowid, 0n, "EUR", 1_000, 2_000),
         ).toThrow();
         expect(() =>
           insertSession.run(

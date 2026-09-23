@@ -4,7 +4,9 @@ function pad(value: number, length = 2): string {
 
 export function formatLocalDateTime(timestamp: number): string {
   if (!Number.isSafeInteger(timestamp) || timestamp < 0) {
-    throw new Error("Timestamp must be a non-negative integer of milliseconds.");
+    throw new Error(
+      "Timestamp must be a non-negative integer of milliseconds.",
+    );
   }
 
   const date = new Date(timestamp);

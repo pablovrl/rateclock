@@ -2,10 +2,7 @@ import Database from "better-sqlite3";
 
 import { type Clock, systemClock } from "../clock/clock.js";
 import type { Project } from "./project.js";
-import {
-  type ProjectInput,
-  validateProjectInput,
-} from "./validation.js";
+import { type ProjectInput, validateProjectInput } from "./validation.js";
 
 export function createProject(
   database: Database.Database,
@@ -44,10 +41,9 @@ export function createProject(
       error instanceof Database.SqliteError &&
       error.code === "SQLITE_CONSTRAINT_UNIQUE"
     ) {
-      throw new Error(
-        `Project "${validatedInput.name}" already exists.`,
-        { cause: error },
-      );
+      throw new Error(`Project "${validatedInput.name}" already exists.`, {
+        cause: error,
+      });
     }
 
     throw error;

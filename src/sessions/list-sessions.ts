@@ -39,7 +39,6 @@ export function listSessions(database: Database.Database): Session[] {
     rateSnapshot: row.rate_snapshot,
     currencySnapshot: row.currency_snapshot,
     startedAt: Number(row.started_at),
-    finishedAt:
-      row.finished_at === null ? null : Number(row.finished_at),
+    finishedAt: row.finished_at === null ? null : Number(row.finished_at),
   }));
 }

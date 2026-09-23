@@ -96,7 +96,9 @@ export function registerSessionCommands(program: Command): void {
         try {
           const status = getSessionStatus(database);
 
-          console.log(status ? formatSessionStatus(status) : "No active session.");
+          console.log(
+            status ? formatSessionStatus(status) : "No active session.",
+          );
         } finally {
           database.close();
         }

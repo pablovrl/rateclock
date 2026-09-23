@@ -24,7 +24,7 @@ export function formatSessionListEntry(
       : formatLocalDateTime(session.finishedAt);
 
   return (
-    `#${session.id} ${session.projectName} | ` +
+    `#${session.id.toString()} ${session.projectName} | ` +
     `${formatLocalDateTime(session.startedAt)} → ${end} | ` +
     `${formatDuration(duration)} | ` +
     `${formatMicrounits(earnings)} ${session.currencySnapshot}`

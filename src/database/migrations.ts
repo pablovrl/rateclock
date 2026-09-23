@@ -54,7 +54,7 @@ export function migrateDatabase(database: Database.Database): void {
 
   if (currentVersion > LATEST_SCHEMA_VERSION) {
     throw new Error(
-      `Database schema version ${currentVersion} is newer than supported version ${LATEST_SCHEMA_VERSION}.`,
+      `Database schema version ${currentVersion.toString()} is newer than supported version ${LATEST_SCHEMA_VERSION.toString()}.`,
     );
   }
 
@@ -65,7 +65,7 @@ export function migrateDatabase(database: Database.Database): void {
   const runPendingMigrations = database.transaction(() => {
     for (const migration of pendingMigrations) {
       migration.migrate(database);
-      database.pragma(`user_version = ${migration.version}`);
+      database.pragma(`user_version = ${migration.version.toString()}`);
     }
   });
 

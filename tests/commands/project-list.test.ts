@@ -38,11 +38,7 @@ describe("worktime project list", () => {
 
   it("lists active and archived projects in creation order", () => {
     const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(
-      temporaryDirectory,
-      "worktime",
-      "worktime.db",
-    );
+    const databasePath = join(temporaryDirectory, "worktime", "worktime.db");
     const database = openDatabase(databasePath);
 
     try {

@@ -1,8 +1,5 @@
 export function formatDuration(durationMilliseconds: number): string {
-  if (
-    !Number.isSafeInteger(durationMilliseconds) ||
-    durationMilliseconds < 0
-  ) {
+  if (!Number.isSafeInteger(durationMilliseconds) || durationMilliseconds < 0) {
     throw new Error("Duration must be a non-negative integer of milliseconds.");
   }
 

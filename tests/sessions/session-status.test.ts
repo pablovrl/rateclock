@@ -41,7 +41,12 @@ describe("getSessionStatus", () => {
         durationMilliseconds: 3_600_000,
         earnings: 30_000_000n,
       });
-      expect(formatSessionStatus(status!)).toBe(
+
+      if (status === null) {
+        throw new Error("Expected an active session status.");
+      }
+
+      expect(formatSessionStatus(status)).toBe(
         "Project:     client-a\n" +
           "Status:      working\n" +
           "Duration:    01:00:00\n" +

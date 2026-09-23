@@ -78,12 +78,7 @@ export function startSession(
         `,
       )
       .safeIntegers()
-      .run(
-        project.id,
-        project.rate_per_hour,
-        project.currency,
-        startedAt,
-      );
+      .run(project.id, project.rate_per_hour, project.currency, startedAt);
 
     return {
       id: BigInt(result.lastInsertRowid),

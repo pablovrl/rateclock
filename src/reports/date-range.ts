@@ -14,7 +14,12 @@ export interface DateRangeOptions {
 function parseLocalDate(value: string): Date {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
-  if (!match || match[1] === undefined || match[2] === undefined || match[3] === undefined) {
+  if (
+    !match ||
+    match[1] === undefined ||
+    match[2] === undefined ||
+    match[3] === undefined
+  ) {
     throw new Error(`Invalid date "${value}". Use YYYY-MM-DD.`);
   }
 

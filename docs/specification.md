@@ -34,7 +34,6 @@ Proyecto:     cliente-a
 Estado:       trabajando
 Tiempo:       01:23:42
 Tarifa:       30,00 EUR/h
-Por segundo:  0,008333 EUR
 Acumulado:    41,850000 EUR
 ```
 
@@ -220,7 +219,7 @@ README.md
 
 - [ ] Implementar `status`.
 - [ ] Implementar `status --watch`.
-- [ ] Mostrar duración, tarifa por segundo e importe acumulado.
+- [ ] Mostrar duración, tarifa por hora e importe acumulado.
 - [ ] Verificar cálculos con sesiones largas y tarifas decimales.
 
 ### 5. Informes

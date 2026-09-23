@@ -1,11 +1,20 @@
+import { clearScreenDown, cursorTo, moveCursor } from "node:readline";
+
 import type { Command } from "commander";
 
 import { openDatabase } from "../database/connection.js";
 import { calculateEarnings } from "../money/earnings.js";
 import { formatMicrounits } from "../money/format.js";
 import { formatDuration } from "../output/duration.js";
+import { formatSessionStatus } from "../output/session-status.js";
+import { getSessionStatus } from "../sessions/session-status.js";
 import { startSession } from "../sessions/start-session.js";
 import { stopSession } from "../sessions/stop-session.js";
+import { watchSessionStatus } from "../sessions/watch-session-status.js";
+
+interface StatusOptions {
+  watch: boolean;
+}
 
 export function registerSessionCommands(program: Command): void {
   program
@@ -43,5 +52,60 @@ export function registerSessionCommands(program: Command): void {
       } finally {
         database.close();
       }
+    });
+
+  program
+    .command("status")
+    .description("Show the active work session")
+    .option("--watch", "refresh the status every second", false)
+    .action((options: StatusOptions) => {
+      const database = openDatabase();
+
+      if (!options.watch) {
+        try {
+          const status = getSessionStatus(database);
+
+          console.log(status ? formatSessionStatus(status) : "No active session.");
+        } finally {
+          database.close();
+        }
+
+        return;
+      }
+
+      let renderedLineCount = 0;
+
+      watchSessionStatus({
+        readStatus: () => getSessionStatus(database),
+        render: (status) => {
+          const output = status
+            ? formatSessionStatus(status)
+            : "No active session.";
+
+          if (process.stdout.isTTY && renderedLineCount > 0) {
+            moveCursor(process.stdout, 0, -renderedLineCount);
+            cursorTo(process.stdout, 0);
+            clearScreenDown(process.stdout);
+          }
+
+          process.stdout.write(`${output}\n`);
+          renderedLineCount = output.split("\n").length;
+        },
+        registerInterrupt: (listener) => {
+          process.once("SIGINT", listener);
+
+          return () => process.off("SIGINT", listener);
+        },
+        onStop: () => database.close(),
+        onError: (error) => {
+          const message =
+            error instanceof Error ? error.message : "Unknown error.";
+
+          console.error(`Error: ${message}`);
+          process.exitCode = 1;
+        },
+        setInterval,
+        clearInterval,
+      });
     });
 }

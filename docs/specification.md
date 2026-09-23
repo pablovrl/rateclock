@@ -13,7 +13,7 @@ El MVP permitirá:
 - Consultar el tiempo y el importe acumulados.
 - Observar el contador actualizándose cada segundo.
 - Conservar las sesiones al cerrar el programa o reiniciar el equipo.
-- Consultar informes diarios, semanales y por proyecto.
+- Consultar tiempo e ingresos por proyecto para una fecha o rango de fechas.
 
 El nombre provisional del ejecutable es `worktime`.
 
@@ -24,7 +24,7 @@ worktime project add cliente-a --rate 30 --currency EUR
 worktime start cliente-a
 worktime status --watch
 worktime stop
-worktime report today
+worktime report cliente-a --date 2026-09-23
 ```
 
 Ejemplo de estado:
@@ -76,16 +76,15 @@ worktime sessions list
 
 ### Informes
 
-- [ ] Mostrar el tiempo e importe acumulados durante el día actual.
-- [ ] Mostrar el resumen de la semana actual.
-- [ ] Filtrar el historial por proyecto.
+- [ ] Mostrar tiempo e importe para un proyecto en una fecha concreta.
+- [ ] Mostrar tiempo e importe para un proyecto en un rango inclusivo de fechas.
+- [ ] Recortar las sesiones que crucen los límites del período.
 
 Comandos previstos:
 
 ```bash
-worktime report today
-worktime report week
-worktime report project <nombre>
+worktime report <nombre> --date <YYYY-MM-DD>
+worktime report <nombre> --from <YYYY-MM-DD> --to <YYYY-MM-DD>
 ```
 
 ## Reglas de negocio
@@ -224,10 +223,9 @@ README.md
 
 ### 5. Informes
 
-- [ ] Implementar informe diario.
-- [ ] Implementar informe semanal.
-- [ ] Implementar informe por proyecto.
-- [ ] Añadir totales de tiempo e importe.
+- [ ] Implementar informe por proyecto para una fecha.
+- [ ] Implementar informe por proyecto para un rango de fechas.
+- [ ] Añadir totales de tiempo e importe por moneda.
 
 ### 6. Calidad y documentación
 

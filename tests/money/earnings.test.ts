@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateEarnings } from "../../src/money/earnings.js";
+import {
+  calculateEarnings,
+  calculateTotalEarnings,
+} from "../../src/money/earnings.js";
 
 describe("calculateEarnings", () => {
   it.each([
@@ -23,4 +26,13 @@ describe("calculateEarnings", () => {
       );
     },
   );
+
+  it("sums exact values before rounding the total", () => {
+    expect(
+      calculateTotalEarnings([
+        { ratePerHour: 1n, durationMilliseconds: 1_800_000 },
+        { ratePerHour: 1n, durationMilliseconds: 1_800_000 },
+      ]),
+    ).toBe(1n);
+  });
 });

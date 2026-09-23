@@ -2,6 +2,7 @@ import type { Command } from "commander";
 
 import { openDatabase } from "../database/connection.js";
 import { startSession } from "../sessions/start-session.js";
+import { stopSession } from "../sessions/stop-session.js";
 
 export function registerSessionCommands(program: Command): void {
   program
@@ -15,6 +16,21 @@ export function registerSessionCommands(program: Command): void {
         const session = startSession(database, projectName);
 
         console.log(`Session started for project "${session.projectName}".`);
+      } finally {
+        database.close();
+      }
+    });
+
+  program
+    .command("stop")
+    .description("Stop the active work session")
+    .action(() => {
+      const database = openDatabase();
+
+      try {
+        const session = stopSession(database);
+
+        console.log(`Session stopped for project "${session.projectName}".`);
       } finally {
         database.close();
       }

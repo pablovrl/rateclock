@@ -1,15 +1,7 @@
 import type Database from "better-sqlite3";
 
 import type { Project } from "./project.js";
-
-interface ProjectRow {
-  id: bigint;
-  name: string;
-  rate_per_hour: bigint;
-  currency: string;
-  active: bigint;
-  created_at: bigint;
-}
+import { type ProjectRow, projectFromRow } from "./project-row.js";
 
 export function listProjects(database: Database.Database): Project[] {
   const rows = database
@@ -23,12 +15,5 @@ export function listProjects(database: Database.Database): Project[] {
     .safeIntegers()
     .all() as ProjectRow[];
 
-  return rows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    ratePerHour: row.rate_per_hour,
-    currency: row.currency,
-    active: row.active === 1n,
-    createdAt: Number(row.created_at),
-  }));
+  return rows.map(projectFromRow);
 }

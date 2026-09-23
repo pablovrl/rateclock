@@ -45,8 +45,8 @@ describe("worktime stop", () => {
       const firstStop = runCli(temporaryDirectory, ["stop"]);
 
       expect(firstStop.status).toBe(0);
-      expect(firstStop.stdout).toBe(
-        'Session stopped for project "client-a".\n',
+      expect(firstStop.stdout).toMatch(
+        /^Session stopped for project "client-a"\.\nDuration: \d{2,}:\d{2}:\d{2}\nEarned:   \d+\.\d{2,6} EUR\n$/,
       );
       expect(firstStop.stderr).toBe("");
 

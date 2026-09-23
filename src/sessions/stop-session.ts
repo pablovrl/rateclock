@@ -1,7 +1,7 @@
 import type Database from "better-sqlite3";
 
 import { type Clock, systemClock } from "../clock/clock.js";
-import type { Session } from "./session.js";
+import type { FinishedSession } from "./session.js";
 
 interface ActiveSessionRow {
   id: bigint;
@@ -15,7 +15,7 @@ interface ActiveSessionRow {
 export function stopSession(
   database: Database.Database,
   clock: Clock = systemClock,
-): Session {
+): FinishedSession {
   const stop = database.transaction(() => {
     const row = database
       .prepare(

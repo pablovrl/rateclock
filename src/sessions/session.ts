@@ -7,3 +7,7 @@ export interface Session {
   startedAt: number;
   finishedAt: number | null;
 }
+
+export type FinishedSession = Omit<Session, "finishedAt"> & {
+  finishedAt: number;
+};

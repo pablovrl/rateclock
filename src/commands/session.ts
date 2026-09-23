@@ -1,6 +1,9 @@
 import type { Command } from "commander";
 
 import { openDatabase } from "../database/connection.js";
+import { calculateEarnings } from "../money/earnings.js";
+import { formatMicrounits } from "../money/format.js";
+import { formatDuration } from "../output/duration.js";
 import { startSession } from "../sessions/start-session.js";
 import { stopSession } from "../sessions/stop-session.js";
 
@@ -29,8 +32,14 @@ export function registerSessionCommands(program: Command): void {
 
       try {
         const session = stopSession(database);
+        const duration = session.finishedAt - session.startedAt;
+        const earnings = calculateEarnings(session.rateSnapshot, duration);
 
         console.log(`Session stopped for project "${session.projectName}".`);
+        console.log(`Duration: ${formatDuration(duration)}`);
+        console.log(
+          `Earned:   ${formatMicrounits(earnings)} ${session.currencySnapshot}`,
+        );
       } finally {
         database.close();
       }

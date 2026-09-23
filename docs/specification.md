@@ -142,7 +142,7 @@ Ubicación prevista de la base de datos:
 - No almacenar ni calcular dinero con `number`.
 - Representar tarifas e importes mediante microunidades enteras con `BigInt`.
 - Mantener el cálculo preciso durante la sesión y redondear solo al presentar informes.
-- Definir y documentar una única regla de redondeo.
+- Redondear a la microunidad más cercana con la regla half-up al presentar un importe.
 
 Fórmula conceptual:
 

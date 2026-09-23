@@ -2,11 +2,14 @@ import { clearScreenDown, cursorTo, moveCursor } from "node:readline";
 
 import type { Command } from "commander";
 
+import { systemClock } from "../clock/clock.js";
 import { openDatabase } from "../database/connection.js";
 import { calculateEarnings } from "../money/earnings.js";
 import { formatMicrounits } from "../money/format.js";
 import { formatDuration } from "../output/duration.js";
+import { formatSessionListEntry } from "../output/session-list.js";
 import { formatSessionStatus } from "../output/session-status.js";
+import { listSessions } from "../sessions/list-sessions.js";
 import { getSessionStatus } from "../sessions/session-status.js";
 import { startSession } from "../sessions/start-session.js";
 import { stopSession } from "../sessions/stop-session.js";
@@ -17,6 +20,34 @@ interface StatusOptions {
 }
 
 export function registerSessionCommands(program: Command): void {
+  const sessionsCommand = program
+    .command("sessions")
+    .description("Manage work session history");
+
+  sessionsCommand
+    .command("list")
+    .description("List work sessions")
+    .action(() => {
+      const database = openDatabase();
+
+      try {
+        const sessions = listSessions(database);
+
+        if (sessions.length === 0) {
+          console.log("No sessions found.");
+          return;
+        }
+
+        const currentTime = systemClock.now();
+
+        for (const session of sessions) {
+          console.log(formatSessionListEntry(session, currentTime));
+        }
+      } finally {
+        database.close();
+      }
+    });
+
   program
     .command("start")
     .description("Start a work session")

@@ -9,7 +9,7 @@ Este proyecto es la primera aplicación práctica de [[01 Proyectos/Crecimiento 
 El MVP permitirá:
 
 - Crear proyectos con tarifa por hora y moneda.
-- Iniciar, pausar, reanudar y finalizar una sesión.
+- Iniciar y finalizar una sesión.
 - Consultar el tiempo y el importe acumulados.
 - Observar el contador actualizándose cada segundo.
 - Conservar las sesiones al cerrar el programa o reiniciar el equipo.
@@ -23,8 +23,6 @@ El nombre provisional del ejecutable es `worktime`.
 worktime project add cliente-a --rate 30 --currency EUR
 worktime start cliente-a
 worktime status --watch
-worktime pause
-worktime resume
 worktime stop
 worktime report today
 ```
@@ -62,8 +60,6 @@ worktime project archive <nombre>
 ### Sesiones
 
 - [ ] Iniciar una sesión para un proyecto.
-- [ ] Pausar la sesión activa.
-- [ ] Reanudar una sesión pausada.
 - [ ] Finalizar la sesión.
 - [ ] Consultar la sesión activa.
 - [ ] Listar sesiones anteriores.
@@ -75,8 +71,6 @@ Comandos previstos:
 worktime start <proyecto>
 worktime status
 worktime status --watch
-worktime pause
-worktime resume
 worktime stop
 worktime sessions list
 ```
@@ -86,7 +80,6 @@ worktime sessions list
 - [ ] Mostrar el tiempo e importe acumulados durante el día actual.
 - [ ] Mostrar el resumen de la semana actual.
 - [ ] Filtrar el historial por proyecto.
-- [ ] Separar tiempo trabajado y tiempo pausado.
 
 Comandos previstos:
 
@@ -98,11 +91,9 @@ worktime report project <nombre>
 
 ## Reglas de negocio
 
-- Solo puede existir una sesión activa o pausada a la vez.
+- Solo puede existir una sesión sin finalizar a la vez.
 - `start` debe fallar si ya existe una sesión sin finalizar.
 - Una sesión siempre pertenece a un proyecto.
-- `pause` detiene la acumulación de tiempo e importe.
-- `resume` comienza un nuevo segmento de trabajo.
 - `stop` cierra definitivamente la sesión.
 - Cambiar la tarifa de un proyecto no modifica las sesiones anteriores.
 - Los proyectos archivados conservan su historial, pero no admiten sesiones nuevas.
@@ -111,7 +102,7 @@ worktime report project <nombre>
 
 ## Modelo de datos
 
-Se utilizará SQLite y se guardará una sesión como una colección de segmentos de trabajo. Cada reanudación creará un segmento nuevo.
+Se utilizará SQLite y cada sesión representará un intervalo continuo entre `start` y `stop`.
 
 ### `projects`
 
@@ -128,16 +119,8 @@ Se utilizará SQLite y se guardará una sesión como una colección de segmentos
 - `project_id`
 - `rate_snapshot`
 - `currency_snapshot`
-- `status`
-- `created_at`
-- `finished_at`
-
-### `segments`
-
-- `id`
-- `session_id`
 - `started_at`
-- `ended_at`
+- `finished_at`
 
 Ubicación prevista de la base de datos:
 
@@ -151,7 +134,7 @@ Ubicación prevista de la base de datos:
 
 - Guardar fechas persistentes para reconstruir una sesión después de cerrar el CLI.
 - Centralizar el acceso al reloj para poder sustituirlo en las pruebas.
-- Calcular la duración sumando únicamente los segmentos de trabajo.
+- Calcular la duración como la diferencia entre el inicio y el final de la sesión.
 - Documentar el comportamiento ante cambios manuales del reloj del sistema.
 
 ### Precisión monetaria
@@ -206,7 +189,7 @@ README.md
 - `commands`: interpretar y validar los argumentos.
 - `database`: abrir SQLite, ejecutar migraciones y manejar transacciones.
 - `projects`: operaciones y reglas relacionadas con proyectos.
-- `sessions`: máquina de estados y segmentos de trabajo.
+- `sessions`: inicio, finalización y consulta de sesiones de trabajo.
 - `money`: cálculos monetarios y redondeo.
 - `clock`: acceso sustituible al reloj.
 - `output`: presentación de resultados y errores.
@@ -230,8 +213,7 @@ README.md
 ### 3. Temporizador
 
 - [ ] Implementar `start` y `stop`.
-- [ ] Implementar `pause` y `resume`.
-- [ ] Impedir transiciones de estado inválidas.
+- [ ] Impedir que exista más de una sesión sin finalizar.
 - [ ] Recuperar correctamente una sesión después de cerrar el CLI.
 
 ### 4. Estado e importe
@@ -261,8 +243,6 @@ README.md
 - [ ] Crear y listar proyectos.
 - [ ] Rechazar nombres, monedas o tarifas inválidas.
 - [ ] Rechazar una segunda sesión activa.
-- [ ] Verificar que una pausa no acumula tiempo ni dinero.
-- [ ] Verificar varias pausas y reanudaciones.
 - [ ] Comprobar que una tarifa histórica no cambia al editar el proyecto.
 - [ ] Recuperar una sesión después de cerrar y volver a ejecutar el programa.
 - [ ] Probar intervalos que crucen la medianoche y el cambio de semana.
@@ -283,6 +263,7 @@ README.md
 
 ## Mejoras posteriores
 
+- Pausar y reanudar sesiones mediante segmentos de trabajo.
 - Exportar informes en CSV.
 - Editar sesiones registradas incorrectamente.
 - Detectar inactividad y suspensión del equipo.
@@ -293,7 +274,7 @@ README.md
 
 ## Criterio de finalización
 
-El MVP estará terminado cuando sea posible crear un proyecto, iniciar una sesión, pausarla, reanudarla, observar el importe acumulado en tiempo real, finalizarla y consultar el historial después de reiniciar el programa, con las pruebas automatizadas aprobadas y sin pérdida de datos.
+El MVP estará terminado cuando sea posible crear un proyecto, iniciar una sesión, observar el importe acumulado en tiempo real, finalizarla y consultar el historial después de reiniciar el programa, con las pruebas automatizadas aprobadas y sin pérdida de datos.
 
 ## Próxima acción
 

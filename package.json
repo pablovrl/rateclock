@@ -15,8 +15,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
+    "prepack": "pnpm build",
+    "prepublishOnly": "pnpm release:check",
+    "release:check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm typecheck:tests && pnpm test",
     "start": "node dist/cli.js",
     "typecheck": "tsc --noEmit",
+    "typecheck:tests": "tsc --project tests/tsconfig.json",
     "test": "pnpm build && vitest run"
   },
   "keywords": [

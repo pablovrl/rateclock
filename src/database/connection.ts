@@ -3,6 +3,7 @@ import { dirname } from "node:path";
 
 import Database from "better-sqlite3";
 
+import { migrateDatabase } from "./migrations.js";
 import { resolveDatabasePath } from "./paths.js";
 
 export function openDatabase(
@@ -10,5 +11,15 @@ export function openDatabase(
 ): Database.Database {
   mkdirSync(dirname(databasePath), { recursive: true });
 
-  return new Database(databasePath);
+  const database = new Database(databasePath);
+
+  try {
+    database.pragma("foreign_keys = ON");
+    migrateDatabase(database);
+
+    return database;
+  } catch (error) {
+    database.close();
+    throw error;
+  }
 }

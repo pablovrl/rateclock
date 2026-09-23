@@ -2,6 +2,7 @@ import type { Command } from "commander";
 
 import { openDatabase } from "../database/connection.js";
 import { formatMicrounits } from "../money/format.js";
+import { archiveProject } from "../projects/archive-project.js";
 import { createProject } from "../projects/create-project.js";
 import { listProjects } from "../projects/list-projects.js";
 import { updateProjectRate } from "../projects/update-project-rate.js";
@@ -84,6 +85,22 @@ export function registerProjectCommands(program: Command): void {
         console.log(
           `Project "${project.name}" rate updated to ${rate} ${project.currency}/h.`,
         );
+      } finally {
+        database.close();
+      }
+    });
+
+  projectCommand
+    .command("archive")
+    .description("Archive a project")
+    .argument("<name>", "project name")
+    .action((name: string) => {
+      const database = openDatabase();
+
+      try {
+        const project = archiveProject(database, name);
+
+        console.log(`Project "${project.name}" archived.`);
       } finally {
         database.close();
       }

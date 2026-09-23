@@ -17,10 +17,12 @@ El MVP permitirá:
 
 El nombre del ejecutable es `rateclock`.
 
+La versión `0.1.0` se distribuye en npm como `@pablovrl/rateclock`.
+
 ## Experiencia principal
 
 ```bash
-rateclock project add cliente-a --rate 30 --currency EUR
+rateclock project add cliente-a --rate 30 --currency USD
 rateclock start cliente-a
 rateclock status --watch
 rateclock stop
@@ -33,19 +35,19 @@ Ejemplo de estado:
 Proyecto:     cliente-a
 Estado:       trabajando
 Tiempo:       01:23:42
-Tarifa:       30,00 EUR/h
-Acumulado:    41,850000 EUR
+Tarifa:       30,00 USD/h
+Acumulado:    41,850000 USD
 ```
 
 ## Alcance funcional
 
 ### Proyectos
 
-- [ ] Crear un proyecto con nombre, tarifa por hora y moneda.
-- [ ] Listar los proyectos existentes.
-- [ ] Modificar la tarifa de un proyecto.
-- [ ] Archivar un proyecto sin borrar su historial.
-- [ ] Impedir nombres de proyecto duplicados.
+- [x] Crear un proyecto con nombre, tarifa por hora y moneda.
+- [x] Listar los proyectos existentes.
+- [x] Modificar la tarifa de un proyecto.
+- [x] Archivar un proyecto sin borrar su historial.
+- [x] Impedir nombres de proyecto duplicados.
 
 Comandos previstos:
 
@@ -58,11 +60,11 @@ rateclock project archive <nombre>
 
 ### Sesiones
 
-- [ ] Iniciar una sesión para un proyecto.
-- [ ] Finalizar la sesión.
-- [ ] Consultar la sesión activa.
-- [ ] Listar sesiones anteriores.
-- [ ] Conservar en cada sesión la tarifa y moneda existentes al iniciarla.
+- [x] Iniciar una sesión para un proyecto.
+- [x] Finalizar la sesión.
+- [x] Consultar la sesión activa.
+- [x] Listar sesiones anteriores.
+- [x] Conservar en cada sesión la tarifa y moneda existentes al iniciarla.
 
 Comandos previstos:
 
@@ -76,9 +78,9 @@ rateclock sessions list
 
 ### Informes
 
-- [ ] Mostrar tiempo e importe para un proyecto en una fecha concreta.
-- [ ] Mostrar tiempo e importe para un proyecto en un rango inclusivo de fechas.
-- [ ] Recortar las sesiones que crucen los límites del período.
+- [x] Mostrar tiempo e importe para un proyecto en una fecha concreta.
+- [x] Mostrar tiempo e importe para un proyecto en un rango inclusivo de fechas.
+- [x] Recortar las sesiones que crucen los límites del período.
 
 Comandos previstos:
 
@@ -196,55 +198,55 @@ README.md
 
 ### 1. Base del programa
 
-- [ ] Crear el proyecto TypeScript, su estructura y los scripts de desarrollo.
-- [ ] Interpretar comandos y mostrar ayuda.
-- [ ] Resolver la ubicación de datos según las convenciones de Linux.
-- [ ] Abrir SQLite y ejecutar la primera migración.
+- [x] Crear el proyecto TypeScript, su estructura y los scripts de desarrollo.
+- [x] Interpretar comandos y mostrar ayuda.
+- [x] Resolver la ubicación de datos según las convenciones de Linux.
+- [x] Abrir SQLite y ejecutar la primera migración.
 
 ### 2. Gestión de proyectos
 
-- [ ] Implementar `project add`.
-- [ ] Implementar `project list`.
-- [ ] Implementar actualización y archivado.
-- [ ] Añadir validaciones y pruebas.
+- [x] Implementar `project add`.
+- [x] Implementar `project list`.
+- [x] Implementar actualización y archivado.
+- [x] Añadir validaciones y pruebas.
 
 ### 3. Temporizador
 
-- [ ] Implementar `start` y `stop`.
-- [ ] Impedir que exista más de una sesión sin finalizar.
-- [ ] Recuperar correctamente una sesión después de cerrar el CLI.
+- [x] Implementar `start` y `stop`.
+- [x] Impedir que exista más de una sesión sin finalizar.
+- [x] Recuperar correctamente una sesión después de cerrar el CLI.
 
 ### 4. Estado e importe
 
-- [ ] Implementar `status`.
-- [ ] Implementar `status --watch`.
-- [ ] Mostrar duración, tarifa por hora e importe acumulado.
-- [ ] Verificar cálculos con sesiones largas y tarifas decimales.
+- [x] Implementar `status`.
+- [x] Implementar `status --watch`.
+- [x] Mostrar duración, tarifa por hora e importe acumulado.
+- [x] Verificar cálculos con sesiones largas y tarifas decimales.
 
 ### 5. Informes
 
-- [ ] Implementar informe por proyecto para una fecha.
-- [ ] Implementar informe por proyecto para un rango de fechas.
-- [ ] Añadir totales de tiempo e importe por moneda.
+- [x] Implementar informe por proyecto para una fecha.
+- [x] Implementar informe por proyecto para un rango de fechas.
+- [x] Añadir totales de tiempo e importe por moneda.
 
 ### 6. Calidad y documentación
 
-- [ ] Ejecutar type checking y lint sin errores.
-- [ ] Ejecutar pruebas unitarias y de integración.
-- [ ] Comprobar que `status --watch` no acumula listeners ni recursos.
+- [x] Ejecutar type checking y lint sin errores.
+- [x] Ejecutar pruebas unitarias y de integración.
+- [x] Comprobar que `status --watch` no acumula listeners ni recursos.
 - [ ] Probar entradas inválidas y fallos de SQLite.
 - [ ] Documentar instalación, comandos, formato monetario y limitaciones.
 
 ## Pruebas esenciales
 
-- [ ] Crear y listar proyectos.
-- [ ] Rechazar nombres, monedas o tarifas inválidas.
-- [ ] Rechazar una segunda sesión activa.
-- [ ] Comprobar que una tarifa histórica no cambia al editar el proyecto.
-- [ ] Recuperar una sesión después de cerrar y volver a ejecutar el programa.
+- [x] Crear y listar proyectos.
+- [x] Rechazar nombres, monedas o tarifas inválidas.
+- [x] Rechazar una segunda sesión activa.
+- [x] Comprobar que una tarifa histórica no cambia al editar el proyecto.
+- [x] Recuperar una sesión después de cerrar y volver a ejecutar el programa.
 - [ ] Probar intervalos que crucen la medianoche y el cambio de semana.
-- [ ] Verificar cálculos monetarios y redondeo sin coma flotante.
-- [ ] Confirmar que las operaciones fallidas no dejan datos parciales.
+- [x] Verificar cálculos monetarios y redondeo sin coma flotante.
+- [x] Confirmar que las operaciones fallidas no dejan datos parciales.
 
 ## Fuera del MVP
 
@@ -280,4 +282,4 @@ El MVP estará terminado cuando sea posible crear un proyecto, iniciar una sesi�
 - [x] Elegir `better-sqlite3` para acceder a SQLite.
 - [x] Elegir Vitest como framework de pruebas.
 - [x] Elegir `tsx`, ESLint y Prettier para el flujo de desarrollo.
-- [ ] Crear el repositorio e inicializar la estructura mínima del proyecto.
+- [x] Crear el repositorio e inicializar la estructura mínima del proyecto.

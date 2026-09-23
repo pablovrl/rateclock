@@ -3,6 +3,9 @@
 Rateclock is a Linux command-line application for tracking work sessions and
 calculating earnings from project-specific hourly rates.
 
+The current release is `0.1.0`, published on npm as
+[`@pablovrl/rateclock`](https://www.npmjs.com/package/@pablovrl/rateclock).
+
 It stores data locally in SQLite, preserves the rate and currency used by each
 session, and can display the active session in real time.
 

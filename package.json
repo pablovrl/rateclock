@@ -28,9 +28,11 @@
   },
   "packageManager": "pnpm@12.5.1",
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
     "commander": "^15.0.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^26.6.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",

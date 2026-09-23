@@ -1,7 +1,7 @@
 {
   "name": "rateclock",
-  "version": "1.0.0",
-  "description": "CLI para registrar tiempo de trabajo e ingresos",
+  "version": "0.1.0",
+  "description": "Track work sessions and earnings from the command line",
   "type": "module",
   "bin": {
     "rateclock": "dist/cli.js"
@@ -19,9 +19,26 @@
     "typecheck": "tsc --noEmit",
     "test": "pnpm build && vitest run"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cli",
+    "freelance",
+    "productivity",
+    "sqlite",
+    "time-tracking"
+  ],
+  "author": "pablovrl",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablovrl/rateclock.git"
+  },
+  "homepage": "https://github.com/pablovrl/rateclock#readme",
+  "bugs": {
+    "url": "https://github.com/pablovrl/rateclock/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",

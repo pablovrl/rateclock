@@ -1,19 +1,11 @@
 import Database from "better-sqlite3";
 
 import { type Clock, systemClock } from "../clock/clock.js";
+import type { Project } from "./project.js";
 import {
   type ProjectInput,
   validateProjectInput,
 } from "./validation.js";
-
-export interface Project {
-  id: bigint;
-  name: string;
-  ratePerHour: bigint;
-  currency: string;
-  active: boolean;
-  createdAt: number;
-}
 
 export function createProject(
   database: Database.Database,

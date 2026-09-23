@@ -4,6 +4,7 @@ import { Command } from "commander";
 
 import packageJson from "../package.json" with { type: "json" };
 import { registerProjectCommands } from "./commands/project.js";
+import { registerSessionCommands } from "./commands/session.js";
 
 const program = new Command();
 
@@ -13,6 +14,7 @@ program
   .version(packageJson.version);
 
 registerProjectCommands(program);
+registerSessionCommands(program);
 
 try {
   program.parse();

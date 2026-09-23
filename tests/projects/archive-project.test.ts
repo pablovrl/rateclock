@@ -13,8 +13,8 @@ const fixedClock = { now: () => 1_700_000_000_000 };
 
 describe("archiveProject", () => {
   it("archives a project without deleting or changing its data", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const project = createProject(
@@ -40,8 +40,8 @@ describe("archiveProject", () => {
   });
 
   it("rejects a project that does not exist", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(() => archiveProject(database, "unknown")).toThrow(
@@ -55,8 +55,8 @@ describe("archiveProject", () => {
   });
 
   it("rejects a project that is already archived", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(

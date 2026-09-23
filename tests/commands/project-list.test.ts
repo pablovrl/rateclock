@@ -21,9 +21,9 @@ function runProjectList(dataHome: string) {
   });
 }
 
-describe("worktime project list", () => {
+describe("rateclock project list", () => {
   it("reports when there are no projects", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
 
     try {
       const result = runProjectList(temporaryDirectory);
@@ -37,8 +37,8 @@ describe("worktime project list", () => {
   });
 
   it("lists active and archived projects in creation order", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime", "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock", "rateclock.db");
     const database = openDatabase(databasePath);
 
     try {

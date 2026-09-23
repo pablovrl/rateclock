@@ -15,8 +15,8 @@ import { stopSession } from "../../src/sessions/stop-session.js";
 
 describe("createProjectReport", () => {
   it("clips sessions to the local date and uses historical rates", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
     const range = resolveLocalDateRange({ date: "2026-09-23" });
 
     try {
@@ -53,8 +53,8 @@ describe("createProjectReport", () => {
   });
 
   it("includes an active session up to the current time", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
     const range = resolveLocalDateRange({ date: "2026-09-23" });
 
     try {
@@ -82,8 +82,8 @@ describe("createProjectReport", () => {
   });
 
   it("returns zero totals for a project without sessions", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
     const range = resolveLocalDateRange({ date: "2026-09-23" });
 
     try {

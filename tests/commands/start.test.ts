@@ -21,11 +21,11 @@ function runStart(dataHome: string, projectName: string) {
   });
 }
 
-describe("worktime start", () => {
+describe("rateclock start", () => {
   it("starts one session and rejects a second one", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
 
     try {

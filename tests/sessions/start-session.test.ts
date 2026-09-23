@@ -19,8 +19,8 @@ interface SessionRow {
 
 describe("startSession", () => {
   it("starts a session with project and clock snapshots", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const project = createProject(
@@ -66,8 +66,8 @@ describe("startSession", () => {
   });
 
   it("rejects a project that does not exist", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(() =>
@@ -80,8 +80,8 @@ describe("startSession", () => {
   });
 
   it("rejects an archived project", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(
@@ -101,8 +101,8 @@ describe("startSession", () => {
   });
 
   it("rejects a second active session without inserting it", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(

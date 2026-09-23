@@ -8,8 +8,8 @@ import { openDatabase } from "../../src/database/connection.js";
 
 describe("openDatabase", () => {
   it("creates the parent directory and opens the database", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "data", "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "data", "rateclock.db");
 
     try {
       const database = openDatabase(databasePath);

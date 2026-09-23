@@ -1,7 +1,7 @@
 import { join } from "node:path";
 
-const APPLICATION_DIRECTORY = "worktime";
-const DATABASE_FILENAME = "worktime.db";
+const APPLICATION_DIRECTORY = "rateclock";
+const DATABASE_FILENAME = "rateclock.db";
 
 export function resolveDatabasePath(
   environment: NodeJS.ProcessEnv = process.env,

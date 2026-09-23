@@ -23,8 +23,8 @@ const fixedClock: Clock = {
 
 describe("createProject", () => {
   it("persists a validated active project", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
     const database = openDatabase(databasePath);
 
     try {
@@ -61,8 +61,8 @@ describe("createProject", () => {
   });
 
   it("rejects a duplicate name without inserting another project", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
     const database = openDatabase(databasePath);
 
     try {

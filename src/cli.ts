@@ -10,7 +10,7 @@ import { registerSessionCommands } from "./commands/session.js";
 const program = new Command();
 
 program
-  .name("worktime")
+  .name("rateclock")
   .description("CLI para registrar tiempo de trabajo e ingresos")
   .version(packageJson.version);
 

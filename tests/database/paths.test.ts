@@ -9,13 +9,13 @@ describe("resolveDatabasePath", () => {
       XDG_DATA_HOME: "/custom/data",
     });
 
-    expect(path).toBe("/custom/data/worktime/worktime.db");
+    expect(path).toBe("/custom/data/rateclock/rateclock.db");
   });
 
   it("falls back to the default directory inside HOME", () => {
     const path = resolveDatabasePath({ HOME: "/home/alice" });
 
-    expect(path).toBe("/home/alice/.local/share/worktime/worktime.db");
+    expect(path).toBe("/home/alice/.local/share/rateclock/rateclock.db");
   });
 
   it("throws when the data directory cannot be determined", () => {

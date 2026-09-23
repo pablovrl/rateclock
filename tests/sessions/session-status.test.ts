@@ -12,8 +12,8 @@ import { startSession } from "../../src/sessions/start-session.js";
 
 describe("getSessionStatus", () => {
   it("returns null when there is no active session", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(getSessionStatus(database, { now: () => 1_000 })).toBeNull();
@@ -24,8 +24,8 @@ describe("getSessionStatus", () => {
   });
 
   it("calculates and formats the active session status", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(
@@ -60,8 +60,8 @@ describe("getSessionStatus", () => {
   });
 
   it("rejects a clock earlier than the session start", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(

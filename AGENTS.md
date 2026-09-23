@@ -1,4 +1,4 @@
-# Worktime project instructions
+# Rateclock project instructions
 
 ## Project specification
 

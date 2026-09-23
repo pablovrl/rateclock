@@ -11,8 +11,8 @@ import { stopSession } from "../../src/sessions/stop-session.js";
 
 describe("stopSession", () => {
   it("stops the active session and allows another one to start", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const project = createProject(
@@ -45,8 +45,8 @@ describe("stopSession", () => {
   });
 
   it("rejects when there is no active session", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(() => stopSession(database, { now: () => 1_000 })).toThrow(
@@ -59,8 +59,8 @@ describe("stopSession", () => {
   });
 
   it("does not stop the session when the clock is earlier than its start", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(

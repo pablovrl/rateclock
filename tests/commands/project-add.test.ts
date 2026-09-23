@@ -8,9 +8,9 @@ import { describe, expect, it } from "vitest";
 
 const cliPath = fileURLToPath(new URL("../../dist/cli.js", import.meta.url));
 
-describe("worktime project add", () => {
+describe("rateclock project add", () => {
   it("creates a project and reports a duplicate name", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const environment = {
       ...process.env,
       XDG_DATA_HOME: temporaryDirectory,

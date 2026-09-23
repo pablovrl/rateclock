@@ -13,8 +13,8 @@ interface TableInfo {
 
 describe("database migrations", () => {
   it("creates the projects and sessions tables at schema version 2", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       const database = openDatabase(databasePath);
@@ -53,8 +53,8 @@ describe("database migrations", () => {
   });
 
   it("upgrades schema version 1 without losing projects", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       const versionOneDatabase = openDatabase(databasePath);
@@ -94,8 +94,8 @@ describe("database migrations", () => {
   });
 
   it("can open an already migrated database", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       openDatabase(databasePath).close();
@@ -108,8 +108,8 @@ describe("database migrations", () => {
   });
 
   it("enforces the main projects constraints", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       const database = openDatabase(databasePath);
@@ -138,8 +138,8 @@ describe("database migrations", () => {
   });
 
   it("enforces session relationships, snapshots, and time intervals", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       const database = openDatabase(databasePath);
@@ -232,9 +232,9 @@ describe("database migrations", () => {
     }
   });
 
-  it("rejects a database schema created by a newer Worktime version", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const databasePath = join(temporaryDirectory, "worktime.db");
+  it("rejects a database schema created by a newer Rateclock version", () => {
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const databasePath = join(temporaryDirectory, "rateclock.db");
 
     try {
       const database = new Database(databasePath);

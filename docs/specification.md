@@ -15,16 +15,16 @@ El MVP permitirá:
 - Conservar las sesiones al cerrar el programa o reiniciar el equipo.
 - Consultar tiempo e ingresos por proyecto para una fecha o rango de fechas.
 
-El nombre provisional del ejecutable es `worktime`.
+El nombre del ejecutable es `rateclock`.
 
 ## Experiencia principal
 
 ```bash
-worktime project add cliente-a --rate 30 --currency EUR
-worktime start cliente-a
-worktime status --watch
-worktime stop
-worktime report cliente-a --date 2026-09-23
+rateclock project add cliente-a --rate 30 --currency EUR
+rateclock start cliente-a
+rateclock status --watch
+rateclock stop
+rateclock report cliente-a --date 2026-09-23
 ```
 
 Ejemplo de estado:
@@ -50,10 +50,10 @@ Acumulado:    41,850000 EUR
 Comandos previstos:
 
 ```bash
-worktime project add <nombre> --rate <tarifa> --currency <moneda>
-worktime project list
-worktime project update <nombre> --rate <tarifa>
-worktime project archive <nombre>
+rateclock project add <nombre> --rate <tarifa> --currency <moneda>
+rateclock project list
+rateclock project update <nombre> --rate <tarifa>
+rateclock project archive <nombre>
 ```
 
 ### Sesiones
@@ -67,11 +67,11 @@ worktime project archive <nombre>
 Comandos previstos:
 
 ```bash
-worktime start <proyecto>
-worktime status
-worktime status --watch
-worktime stop
-worktime sessions list
+rateclock start <proyecto>
+rateclock status
+rateclock status --watch
+rateclock stop
+rateclock sessions list
 ```
 
 ### Informes
@@ -83,8 +83,8 @@ worktime sessions list
 Comandos previstos:
 
 ```bash
-worktime report <nombre> --date <YYYY-MM-DD>
-worktime report <nombre> --from <YYYY-MM-DD> --to <YYYY-MM-DD>
+rateclock report <nombre> --date <YYYY-MM-DD>
+rateclock report <nombre> --from <YYYY-MM-DD> --to <YYYY-MM-DD>
 ```
 
 ## Reglas de negocio
@@ -123,7 +123,7 @@ Se utilizará SQLite y cada sesión representará un intervalo continuo entre `s
 Ubicación prevista de la base de datos:
 
 ```text
-~/.local/share/worktime/worktime.db
+~/.local/share/rateclock/rateclock.db
 ```
 
 ## Tiempo y dinero

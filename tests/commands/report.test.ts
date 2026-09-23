@@ -23,11 +23,11 @@ function runReport(dataHome: string, args: string[]) {
   });
 }
 
-describe("worktime report", () => {
+describe("rateclock report", () => {
   it("reports time and earnings for one local date", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
     const startedAt = new Date(2026, 0, 2, 9, 0, 0).getTime();
 
@@ -81,7 +81,7 @@ describe("worktime report", () => {
   });
 
   it("rejects an invalid date", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
 
     try {
       const result = runReport(temporaryDirectory, [

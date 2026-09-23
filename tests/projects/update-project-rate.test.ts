@@ -13,8 +13,8 @@ const fixedClock = { now: () => 1_700_000_000_000 };
 
 describe("updateProjectRate", () => {
   it("updates the rate of an active project", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const originalProject = createProject(
@@ -35,8 +35,8 @@ describe("updateProjectRate", () => {
   });
 
   it("rejects a project that does not exist", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(() => updateProjectRate(database, "unknown", "45")).toThrow(
@@ -50,8 +50,8 @@ describe("updateProjectRate", () => {
   });
 
   it("rejects an archived project", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const project = createProject(
@@ -74,8 +74,8 @@ describe("updateProjectRate", () => {
   });
 
   it("does not change the project when the rate is invalid", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       createProject(

@@ -21,11 +21,11 @@ function runCli(dataHome: string, args: string[]) {
   });
 }
 
-describe("worktime project update", () => {
+describe("rateclock project update", () => {
   it("updates a project's hourly rate", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
 
     try {
@@ -64,7 +64,7 @@ describe("worktime project update", () => {
   });
 
   it("reports a project that does not exist", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
 
     try {
       const result = runCli(temporaryDirectory, [

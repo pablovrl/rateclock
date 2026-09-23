@@ -21,11 +21,11 @@ function runCli(dataHome: string, args: string[]) {
   });
 }
 
-describe("worktime stop", () => {
+describe("rateclock stop", () => {
   it("stops an active session and reports a repeated attempt", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
 
     try {

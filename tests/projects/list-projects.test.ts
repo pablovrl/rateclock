@@ -10,8 +10,8 @@ import { listProjects } from "../../src/projects/list-projects.js";
 
 describe("listProjects", () => {
   it("returns an empty list when there are no projects", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(listProjects(database)).toEqual([]);
@@ -22,8 +22,8 @@ describe("listProjects", () => {
   });
 
   it("returns all projects ordered by creation time and id", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const firstProject = createProject(

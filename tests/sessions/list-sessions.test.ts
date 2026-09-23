@@ -14,8 +14,8 @@ import { stopSession } from "../../src/sessions/stop-session.js";
 
 describe("listSessions", () => {
   it("returns an empty list when there are no sessions", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       expect(listSessions(database)).toEqual([]);
@@ -26,8 +26,8 @@ describe("listSessions", () => {
   });
 
   it("returns active and finished sessions with historical snapshots", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
-    const database = openDatabase(join(temporaryDirectory, "worktime.db"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
+    const database = openDatabase(join(temporaryDirectory, "rateclock.db"));
 
     try {
       const archivedProject = createProject(

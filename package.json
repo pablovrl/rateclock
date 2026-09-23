@@ -1,10 +1,10 @@
 {
-  "name": "worktime",
+  "name": "rateclock",
   "version": "1.0.0",
   "description": "CLI para registrar tiempo de trabajo e ingresos",
   "type": "module",
   "bin": {
-    "worktime": "dist/cli.js"
+    "rateclock": "dist/cli.js"
   },
   "files": [
     "dist"

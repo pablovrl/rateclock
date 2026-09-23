@@ -26,9 +26,9 @@ function runStatus(dataHome: string, watch = false) {
   );
 }
 
-describe("worktime status", () => {
+describe("rateclock status", () => {
   it("reports an empty status", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
 
     try {
       const result = runStatus(temporaryDirectory);
@@ -42,9 +42,9 @@ describe("worktime status", () => {
   });
 
   it("reports the active session", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
 
     try {
@@ -74,7 +74,7 @@ describe("worktime status", () => {
   });
 
   it("exits watch mode when there is no active session", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
 
     try {
       const result = runStatus(temporaryDirectory, true);

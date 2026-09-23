@@ -21,11 +21,11 @@ function runCli(dataHome: string, args: string[]) {
   });
 }
 
-describe("worktime project archive", () => {
+describe("rateclock project archive", () => {
   it("archives a project and reports repeated attempts", () => {
-    const temporaryDirectory = mkdtempSync(join(tmpdir(), "worktime-"));
+    const temporaryDirectory = mkdtempSync(join(tmpdir(), "rateclock-"));
     const database = openDatabase(
-      join(temporaryDirectory, "worktime", "worktime.db"),
+      join(temporaryDirectory, "rateclock", "rateclock.db"),
     );
 
     try {

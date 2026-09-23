@@ -1,6 +1,6 @@
 import type Database from "better-sqlite3";
 
-const LATEST_SCHEMA_VERSION = 1;
+const LATEST_SCHEMA_VERSION = 2;
 
 const migrations = [
   {
@@ -15,6 +15,29 @@ const migrations = [
           active INTEGER NOT NULL DEFAULT 1 CHECK (active IN (0, 1)),
           created_at INTEGER NOT NULL CHECK (created_at >= 0)
         ) STRICT;
+      `);
+    },
+  },
+  {
+    version: 2,
+    migrate(database: Database.Database): void {
+      database.exec(`
+        CREATE TABLE sessions (
+          id INTEGER PRIMARY KEY,
+          project_id INTEGER NOT NULL REFERENCES projects(id),
+          rate_snapshot INTEGER NOT NULL CHECK (rate_snapshot > 0),
+          currency_snapshot TEXT NOT NULL CHECK (
+            currency_snapshot GLOB '[A-Z][A-Z][A-Z]'
+          ),
+          started_at INTEGER NOT NULL CHECK (started_at >= 0),
+          finished_at INTEGER CHECK (
+            finished_at IS NULL OR finished_at >= started_at
+          )
+        ) STRICT;
+
+        CREATE UNIQUE INDEX sessions_one_unfinished
+        ON sessions ((1))
+        WHERE finished_at IS NULL;
       `);
     },
   },

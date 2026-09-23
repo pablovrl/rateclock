@@ -32,13 +32,13 @@ included by the installed package.
 Install Rateclock from npm with pnpm:
 
 ```bash
-pnpm add --global rateclock
+pnpm add --global @pablovrl/rateclock
 ```
 
 Alternatively, use npm:
 
 ```bash
-npm install --global rateclock
+npm install --global @pablovrl/rateclock
 ```
 
 Confirm the installation:

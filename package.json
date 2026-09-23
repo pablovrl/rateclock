@@ -1,5 +1,5 @@
 {
-  "name": "rateclock",
+  "name": "@pablovrl/rateclock",
   "version": "0.1.0",
   "description": "Track work sessions and earnings from the command line",
   "type": "module",

@@ -22,40 +22,47 @@ session, and can display the active session in real time.
 
 - Linux
 - Node.js 22 or newer
-- pnpm 12
+- pnpm 12 when building from source
 
 `better-sqlite3` uses a native SQLite binary. The supported Linux x64 binary is
 included by the installed package.
 
 ## Installation
 
-Install dependencies and build the CLI:
+Install Rateclock from npm with pnpm:
 
 ```bash
-pnpm install
-pnpm build
+pnpm add --global rateclock
 ```
 
-Install the current checkout globally:
+Alternatively, use npm:
 
 ```bash
-pnpm add --global .
+npm install --global rateclock
 ```
 
 Confirm the installation:
 
 ```bash
 rateclock --version
+# 0.1.0
+
 rateclock --help
 ```
 
-After changing the source, rebuild it:
+### Install from source
+
+Clone the repository, install dependencies, and build the CLI:
 
 ```bash
+git clone https://github.com/pablovrl/rateclock.git
+cd rateclock
+pnpm install
 pnpm build
+pnpm add --global .
 ```
 
-During development, commands can be run without a global installation:
+During development, commands can also run directly from TypeScript:
 
 ```bash
 pnpm dev --help
